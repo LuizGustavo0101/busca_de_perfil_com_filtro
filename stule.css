@@ -1,0 +1,288 @@
+:root{
+    --cinza-escuro:hsl(180, 29%, 50%);
+    --cinza-claro-fundo:hsl(180, 52%, 96%);
+    --cinza-calro-tablete: hsl(180, 31%, 95%);
+    --ciano-acinzentado:hsl(180, 8%, 52%);
+    --cinza-muito-escuro:hsl(180, 14%, 20%);
+
+    --fonte-1:'Fraunces', serif;;
+    --fonte-2:'League Spartan', sans-serif;;
+}
+
+*{
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Fraunces', serif;
+    font-family: 'League Spartan', sans-serif;
+}
+
+body{
+    background-color: var(--cinza-claro-fundo);
+    overflow-x: hidden ;
+    height: 350vh;
+}
+
+/* Config do body */
+.header{
+    background-color: var(--cinza-escuro);
+}
+
+/* config do filtro */
+
+ol{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5vh;
+    margin-top: -29px;
+}
+
+.filtro{
+    width: 80%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 15px 28px -3px rgba(214,214,214,1);
+    display: flex;
+    padding: 20px 40px;
+}
+
+.options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.options a{
+    color: var(--cinza-escuro);
+    text-decoration: none;
+}
+
+.options a:hover{
+    text-decoration: underline;
+}
+
+.listOptions{
+    display: flex;
+    flex-wrap: wrap;
+    max-width:70%;
+    gap: 15px;
+}
+
+.listOptions li{
+    list-style: none;
+    color: var(--cinza-escuro);
+    background-color: var(--cinza-calro-tablete);
+    border-radius: 5px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.listOptions svg{
+    height: 100%;
+    width: 30px;
+    background-color: var(--ciano-acinzentado);
+    margin-left: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    padding: 8px 0px 0px 7.6px;
+}
+
+.listOptions svg:hover{
+    background-color: var(--cinza-muito-escuro);
+}
+
+.li{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height:25vh;
+    border-radius: 5px;
+    background-color:white;
+    box-shadow: 0px 15px 28px -3px rgba(214,214,214,1);
+}
+
+.li img{
+    position: relative;
+    border-radius: 50%;
+    margin-left: 40px;
+}
+
+.agrupamentoMeio{
+    margin-left: 30px;
+    width: 60%;
+    height: 88px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 14%;
+}
+
+.agrupamentoMeio div:nth-child(1),
+.agrupamentoMeio div ul{
+    display: flex;
+}
+
+.agrupamentoMeio div h4{
+    color: var(--ciano-acinzentado);
+    font-family: var(--fonte-2);
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.agrupamentoMeio div span{
+    font-family: bold;
+    font-family: var(--fonte-2);
+}
+
+.new{
+    background-color: var(--ciano-acinzentado);
+    color: white;
+    border-radius: 10vh;
+    padding:6px 6px 0px 8px;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.featured{
+    background-color: var(--cinza-muito-escuro);
+    margin-left: 5px;
+    color: white;
+    border-radius: 10vh;
+    padding: 6px 5px 3px 7px;
+    font-size: 15px;
+}
+
+.agrupamentoMeio div ul{
+    display: grid;
+    grid-auto-flow: column;
+    font-size: 18px;
+    color: var(--ciano-acinzentado);
+    list-style: none;
+}
+
+.agrupamentoMeio div ul li:nth-child(2)::before,
+.agrupamentoMeio div ul li:nth-child(3)::before{
+    content: '\2022';
+    margin: 0px 15px;
+}
+
+.buttons{
+    display: grid;
+    grid-auto-flow: column; 
+    justify-content: right;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    width: 90%;
+    margin-right: 30px;
+}
+
+.button{
+    background-color: var(--cinza-calro-tablete);
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: var(--cinza-escuro);
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: var(--ciano-acinzentado);
+    color: white;
+}
+
+/* Código para sumir com os botões ou outros em undefined ou vazio */
+.display-on{
+    display: block;
+}
+
+.display-off{
+    display: none;
+}
+
+.border-on{
+    border-left:5px solid var(--cinza-escuro);
+}
+/* Cofiguração basica para computador */
+
+/* Configuração para as outras telas */
+
+hr{
+    display: none;
+}
+
+/* Tablet */
+@media screen and (width <= 768px){
+    .filtro{
+        width: 90%;
+    }
+    
+    .li{
+        flex-wrap: wrap;
+        height: 38vh;
+        padding-top: 5vh;
+        padding-bottom: 15px;
+        width: 90%;
+    }
+
+    hr{
+        display: block;
+        background-color: black;
+        height: 1px;
+        width: 85%;
+        margin: -80px auto -90px auto;
+    }
+
+    .buttons{
+        width: 63vh;
+        gap: 0px;
+        justify-content: space-between;
+        margin:0px 7vh;
+    }
+}
+
+/* Celular */
+@media screen and (width <= 375px ){    
+    .li img{
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        margin: -15vh 3vh;
+    }
+
+    .filtro{
+        margin-bottom: 30px;
+    }
+
+    .agrupamentoMeio div:nth-child(1){
+        margin-bottom: -20px;
+    }
+
+    .agrupamentoMeio h2{
+        font-size: 15px;
+        width: 28vh;
+    }
+
+    .agrupamentoMeio div ul{
+        width: 240px;
+        margin-top: -20px;
+    }
+
+    .agrupamentoMeio div ul li{
+        font-size: 15px;
+    }
+    
+    .buttons{
+        display: flex;
+        justify-content: inherit;
+        gap: 5px;
+    }
+}
