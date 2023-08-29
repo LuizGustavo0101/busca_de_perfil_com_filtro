@@ -59,6 +59,31 @@ async function fetchData() {
                 jobCard.classList.add("border-on");
             }
 
+            function fechar(svgElemento) {
+                const liElemento = svgElemento.closest("li"); // Encontra o elemento <li> pai mais próximo
+                liElemento.style.display = "none";
+            }
+            
+            document.addEventListener("DOMContentLoaded", function() {
+                const a = document.querySelector("#ocultar-itens");
+            
+                a.addEventListener("click", function() {
+                    const itensLista = document.querySelectorAll("#minha-lista li");
+            
+                    itensLista.forEach(function(item) {
+                        item.style.display = "none";
+                    });
+                });
+            
+                const svgElementos = document.querySelectorAll("svg.fechar-elemento");
+            
+                svgElementos.forEach(function(svgElemento) {
+                    svgElemento.addEventListener("click", function() {
+                        fechar(svgElemento);
+                    });
+                });
+            });
+            
             jobsList.appendChild(jobCard);
         });
 
@@ -69,233 +94,3 @@ async function fetchData() {
 
 // Chamar a função para buscar e consumir os dados
 fetchData();
-
-document.addEventListener('DOMContentLoaded', function () {
-    const filterButtons = document.querySelectorAll('.listOptions li');
-    const filteredItemsContainer = document.querySelector('#listaBox');
-    const items = [{
-        "id": 1,
-"company": "Photosnap",
-"logo": "./images/photosnap.svg",
-"new": true,
-"featured": true,
-"position": "Senior Frontend Developer",
-"role": "Frontend",
-"level": "Senior",
-"postedAt": "1d ago",
-"contract": "Full Time",
-"location": "USA Only",
-"languages": ["HTML", "CSS", "JavaScript"],
-"tools": []
-},
-{
-"id": 2,
-"company": "Manage",
-"logo": "./images/manage.svg",
-"new": true,
-"featured": true,
-"position": "Fullstack Developer",
-"role": "Fullstack",
-"level": "Midweight",
-"postedAt": "1d ago",
-"contract": "Part Time",
-"location": "Remote",
-"languages": ["Python"],
-"tools": ["React"]
-},
-{
-"id": 3,
-"company": "Account",
-"logo": "./images/account.svg",
-"new": true,
-"featured": false,
-"position": "Junior Frontend Developer",
-"role": "Frontend",
-"level": "Junior",
-"postedAt": "2d ago",
-"contract": "Part Time",
-"location": "USA Only",
-"languages": ["JavaScript"],
-"tools": ["React", "Sass"]
-},
-{
-"id": 4,
-"company": "MyHome",
-"logo": "./images/myhome.svg",
-"new": false,
-"featured": false,
-"position": "Junior Frontend Developer",
-"role": "Frontend",
-"level": "Junior",
-"postedAt": "5d ago",
-"contract": "Contract",
-"location": "USA Only",
-"languages": ["CSS", "JavaScript"],
-"tools": []
-},
-{
-"id": 5,
-"company": "Loop Studios",
-"logo": "./images/loop-studios.svg",
-"new": false,
-"featured": false,
-"position": "Software Engineer",
-"role": "Fullstack",
-"level": "Midweight",
-"postedAt": "1w ago",
-"contract": "Full Time",
-"location": "Worldwide",
-"languages": ["JavaScript"],
-"tools": ["Ruby", "Sass"]
-},
-{
-"id": 6,
-"company": "FaceIt",
-"logo": "./images/faceit.svg",
-"new": false,
-"featured": false,
-"position": "Junior Backend Developer",
-"role": "Backend",
-"level": "Junior",
-"postedAt": "2w ago",
-"contract": "Full Time",
-"location": "UK Only",
-"languages": ["Ruby"],
-"tools": ["RoR"]
-},
-{
-"id": 7,
-"company": "Shortly",
-"logo": "./images/shortly.svg",
-"new": false,
-"featured": false,
-"position": "Junior Developer",
-"role": "Frontend",
-"level": "Junior",
-"postedAt": "2w ago",
-"contract": "Full Time",
-"location": "Worldwide",
-"languages": ["HTML", "JavaScript"],
-"tools": ["Sass"]
-},
-{
-"id": 8,
-"company": "Insure",
-"logo": "./images/insure.svg",
-"new": false,
-"featured": false,
-"position": "Junior Frontend Developer",
-"role": "Frontend",
-"level": "Junior",
-"postedAt": "2w ago",
-"contract": "Full Time",
-"location": "USA Only",
-"languages": ["JavaScript"],
-"tools": ["Vue", "Sass"]
-},
-{
-"id": 9,
-"company": "Eyecam Co.",
-"logo": "./images/eyecam-co.svg",
-"new": false,
-"featured": false,
-"position": "Full Stack Engineer",
-"role": "Fullstack",
-"level": "Midweight",
-"postedAt": "3w ago",
-"contract": "Full Time",
-"location": "Worldwide",
-"languages": ["JavaScript", "Python"],
-"tools": ["Django"]
-},
-{
-"id": 10,
-"company": "The Air Filter Company",
-"logo": "./images/the-air-filter-company.svg",
-"new": false,
-"featured": false,
-"position": "Front-end Dev",
-"role": "Frontend",
-"level": "Junior",
-"postedAt": "1mo ago",
-"contract": "Part Time",
-"location": "Worldwide",
-"languages": ["JavaScript"],
-"tools": ["React", "Sass"]
-}
-    ];
-
-    let activeFilter = null;
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const filterValue = button.textContent.toLowerCase().trim();
-
-            if (filterValue === activeFilter) {
-                activeFilter = null;
-                button.classList.remove('active');
-                displayFilteredItems(items);
-            } else {
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                });
-
-                button.classList.add('active');
-                activeFilter = filterValue;
-
-                const filteredItems = items.filter(item => {
-                    return (
-                        item.languages.includes(filterValue) ||
-                        item.tools.includes(filterValue) ||
-                        item.role.toLowerCase() === filterValue ||
-                        item.level.toLowerCase() === filterValue
-                    );
-                });
-                displayFilteredItems(filteredItems);
-            }
-        });
-    });
-
-    function displayFilteredItems(filteredItems) {
-        filteredItemsContainer.innerHTML = '';
-
-        if (filteredItems.length === 0) {
-            filteredItemsContainer.innerHTML = '<p>Nenhum item encontrado.</p>';
-            return;
-        }
-
-        filteredItems.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'filtered-item';
-
-            const companyElement = document.createElement('li');
-            companyElement.textContent = item.company;
-            const positionElement = document.createElement('p');
-            positionElement.textContent = item.position;
-
-            itemDiv.appendChild(companyElement);
-            itemDiv.appendChild(positionElement);
-
-            filteredItemsContainer.appendChild(itemDiv);
-        });
-    }
-
-    // Funçõa para fechar os filtros
-    function fechar(svgElemento) {
-        const liElemento = svgElemento.parentNode; // o parentNode fecha só o elemnto pai (no caso li)
-        liElemento.style.display = 'none';
-    }
-
-    // Limpar os LIs com a tag <a>
-    document.addEventListener("DOMContentLoaded", function(){ // todo o conteúdo do DOM seja carregado.
-        const a = document.querySelector("#ocultar-itens");
-
-        a.addEventListener("click", function() {
-            const itensLista = document.querySelectorAll("#minha-lista li");
-
-            itensLista.forEach(function(item) { // percorrer todos os li(s) por representar um loop e fazer a ação da função dita
-                item.style.display = "none";
-            });
-        });
-    })
-});
